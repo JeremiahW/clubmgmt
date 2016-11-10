@@ -1,0 +1,56 @@
+{extend name="layout" /}
+{block name="css"}{/block}
+{block name="body"}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>子活动列表<small> </small></h5>
+    </div>
+    <div class="ibox-content">
+        <a class="btn btn-primary" href='{:Url("/index/activity/addactivityitem", array("activityid"=>$activityid))}'>添加活动</a>
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>活动名称</th>
+                <th>开始报名时间</th>
+                <th>结束报名时间</th>
+                <th>允许报名人数</th>
+                <th>实际报名人数</th>
+                <th>官方价格</th>
+                <th>实际价格</th>
+                <th>状态</th>
+
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {volist name='list' id='m'}
+            <tr>
+                <td>{$m.id}</td>
+                <td>{$m.subject}</td>
+                <td>{$m.startregdate}</td>
+                <td>{$m.endregdate}</td>
+                <td>{$m.numofmember}</td>
+                <td>{$m.actnumofmember}</td>
+                <td>{$m.price}</td>
+                <td>{$m.actprice}</td>
+                <td>{$m.isdeleted}</td>
+                <td>
+                    <a href='{:Url("index/activity/showMember",["itemid"=>$m.id, "activityid"=>$activityid])}' class="btn btn-primary">查看报名会员</a>
+                    <a href='{:Url("index/activity/register",["itemid"=>$m.id, "activityid"=>$activityid])}' class="btn btn-primary">添加报名</a>
+
+                </td>
+            </tr>
+            {/volist}
+
+            </tbody>
+        </table>
+        {$list->render()}
+    </div>
+
+</div>
+{/block}
+
+{block name="js"}{/block}

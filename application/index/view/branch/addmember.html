@@ -1,0 +1,35 @@
+{extend name="layout" /}
+{block name="css"}{/block}
+{block name="body"}
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>{notempty name="branchname"}{$branchname}{/notempty}<small> 添加会员 </small></h5>
+    </div>
+    <div class="ibox-content">
+        <button id="btnAdd" class="btn btn-primary">添加</button>
+        <input id="requestUrl" type="text" value='{notempty name="requestUrl"}{$requestUrl}{/notempty}'>
+        <input id="postUrl" type="text" value='{notempty name="postUrl"}{$postUrl}{/notempty}'>
+
+
+        <table id="table" data-toggle="table" data-click-to-select="true"  >
+            <thead>
+            <tr>
+                <th data-field="state" data-checkbox="true"></th>
+                <th data-field="id">#</th>
+                <th data-field="chinese">姓名</th>
+                <th data-field="gender" data-formatter="formatGender">性别</th>
+                <th data-field="birthdate" data-formatter="formatDate" >出生日期</th>
+                <th data-field="phone">联系电话</th>
+                <th data-field="email">邮箱</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+{/block}
+{block name="js"}
+{load href="__PUBLIC__/bootstrap-table/bootstrap-table.min.css" /}
+{load href="__PUBLIC__/bootstrap-table/bootstrap-table.min.js" /}
+{load href="__PUBLIC__/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" /}
+{load href="__PUBLIC__/view/branch/addmember.js" /}
+{/block}

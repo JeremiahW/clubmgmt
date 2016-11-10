@@ -1,0 +1,75 @@
+ <div class="form-group"><label class="col-sm-2 control-label">姓名</label>
+     <div class="col-sm-10"><input type="text" class="form-control" id="chinese" name="chinese" value='{notempty name="chinese"}{$chinese}{/notempty}'></div>
+ </div>
+ <div class="hr-line-dashed"></div>
+
+ <div class="form-group"><label class="col-sm-2 control-label">性别</label>
+     <div class="col-sm-10">
+         <select name="gender" id="gender" class="form-control">
+             <option value="1" {eq name="gender" value="1" }selected {/eq}>男</option>
+             <option value="0" {eq name="gender" value="0" }selected {/eq}>女</option>
+         </select>
+     </div>
+ </div>
+ <div class="hr-line-dashed"></div>
+
+ <div class="form-group"><label class="col-sm-2 control-label">出生日期</label>
+     <div class="col-sm-10">
+         <div class="input-group date form_date " data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+             <input class="form-control" size="16" type="text" value='{notempty name="birthdate"}{$birthdate}{/notempty}' name="birthdate" id="birthdate" readonly>
+             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+         </div>
+         <input type="hidden" id="dtp_input2" value="" />
+     </div>
+ </div>
+ <div class="hr-line-dashed"></div>
+
+ <div class="form-group"><label class="col-sm-2 control-label">联系电话</label>
+     <div class="col-sm-10"><input type="text" class="form-control" id="phone" name="phone" value='{notempty name="phone"}{$phone}{/notempty}'></div>
+ </div>
+ <div class="hr-line-dashed"></div>
+
+ <div class="form-group"><label class="col-sm-2 control-label">邮箱</label>
+     <div class="col-sm-10"><input type="text" class="form-control" id="email" name="email" value='{notempty name="email"}{$email}{/notempty}'></div>
+ </div>
+ <div class="hr-line-dashed"></div>
+
+ <div class="form-group"><label class="col-sm-2 control-label">身份证</label>
+     <div class="col-sm-10"><input type="text" class="form-control" id="shenfenzheng" name="shenfenzheng" value='{notempty name="shenfenzheng"}{$shenfenzheng}{/notempty}'></div>
+ </div>
+ <div class="hr-line-dashed"></div>
+
+ <div class="form-group"><label class="col-sm-2 control-label">住址</label>
+     <div class="col-sm-10"><input type="text" class="form-control" id="address" name="address" value='{notempty name="address"}{$address}{/notempty}'></div>
+ </div>
+ <div class="hr-line-dashed"></div>
+
+ <div class="form-group"><label class="col-sm-2 control-label">衣服尺码</label>
+     <div class="col-sm-10">
+         <select name="clothsize" id="clothsize" class="form-control">
+             <option value="S" {eq name="clothsize" value="S" }selected {/eq}>S</option>
+             <option value="M" {eq name="clothsize" value="M" }selected {/eq}>M</option>
+             <option value="L" {eq name="clothsize" value="L" }selected {/eq}>L</option>
+             <option value="XL" {eq name="clothsize" value="XL" }selected {/eq}>XL</option>
+             <option value="XXL" {eq name="clothsize" value="XXL" }selected {/eq}>XXL</option>
+         </select>
+     </div>
+ </div>
+ <div class="hr-line-dashed"></div>
+
+ <div class="form-group"><label class="col-sm-2 control-label">血型</label>
+     <div class="col-sm-10"><input type="text" class="form-control" id="bloodtype" name="bloodtype" value='{notempty name="bloodtype"}{$bloodtype}{/notempty}'></div>
+ </div>
+ <div class="hr-line-dashed"></div>
+
+ <div class="form-group"><label class="col-sm-2 control-label">紧急联系人姓名</label>
+     <div class="col-sm-10"><input type="text" class="form-control" id="emergencycontactname" name="emergencycontactname" value='{notempty name="emergencycontactname"}{$emergencycontactname}{/notempty}'></div>
+ </div>
+ <div class="hr-line-dashed"></div>
+
+ <div class="form-group"><label class="col-sm-2 control-label">紧急联系人电话</label>
+     <div class="col-sm-10"><input type="text" class="form-control" id="emergencycontactphone" name="emergencycontactphone" value='{notempty name="emergencycontactphone"}{$emergencycontactphone}{/notempty}'></div>
+ </div>
+ <div class="hr-line-dashed"></div>
+ <input type="hidden" name="id" value='{notempty name="id"}{$id}{/notempty}' class="form-control">

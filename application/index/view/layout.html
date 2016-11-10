@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSPINIA | Main view</title>
+
+    <link href="__PUBLIC__/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/static/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/static/css/animate.css" rel="stylesheet">
+    <link href="__PUBLIC__/static/css/style.css" rel="stylesheet">
+
+    {block name="css"}{/block}
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
+                             </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        IN+
+                    </div>
+                </li>
+                <li {if condition='(strtolower($Request.controller) eq "index")'}class="active"{/if}>
+
+                    <a href="#"><i class="fa fa-user"></i> <span class="nav-label">会员管理</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li {if condition='(strtolower($Request.controller) eq "index") and (strtolower($Request.action) eq "show")'}class='active'{/if}><a href='{:Url("index/index/show")}'>查看会员
+                    </a>
+                      </li>
+                        <li {if condition='(strtolower($Request.controller) eq "index") and (strtolower($Request.action) eq "add")'}class='active'{/if}><a href='{:Url("index/index/add")}'>添加会员</a></li>
+                    </ul>
+                </li>
+                <li {if condition='(strtolower($Request.controller) eq "branch")'}class="active"{/if}>
+                    <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">分部管理</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li {if condition='(strtolower($Request.controller) eq "branch") and (strtolower($Request.action) eq "show")'}class='active'{/if}><a href='{:Url("index/branch/show")}'>查看分部</a></li>
+                        <li {if condition='(strtolower($Request.controller) eq "branch") and (strtolower($Request.action) eq "add")'}class='active'{/if}><a href='{:Url("index/branch/add")}'>添加分部</a></li>
+                    </ul>
+                </li>
+                <li  {if condition='(strtolower($Request.controller) eq "activity")'}class="active"{/if}>
+                    <a href="#"><i class="fa fa-bullhorn"></i> <span class="nav-label">活动管理</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li {if condition='(strtolower($Request.controller) eq "activity") and (strtolower($Request.action) eq "show")'}class='active'{/if}><a href='{:Url("index/activity/show")}'>查看活动</a></li>
+                        <li {if condition='(strtolower($Request.controller) eq "activity") and (strtolower($Request.action) eq "add")'}class='active'{/if}><a href='{:Url("index/activity/add")}'>添加活动</a></li>
+                        <li {if condition='(strtolower($Request.controller) eq "activity") and (strtolower($Request.action) eq "showactivitydetails")'}class='active'{/if}><a href='{:Url("index/activity/showactivitydetails")}'>活动报名</a></li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa  fa-cog"></i> <span class="nav-label">用户管理</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href='{:Url("index/index/show")}'>查看用户</a></li>
+                        <li><a href='{:Url("index/index/add")}'>添加用户</a></li>
+                     </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    <form role="search" class="navbar-form-custom" method="post" action="#">
+                        <div class="form-group">
+                            <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    {block name="body"}{/block}
+
+                 </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> Example Company &copy; 2014-2017
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="__PUBLIC__/static/js/jquery-2.1.1.js"></script>
+<script src="__PUBLIC__/static/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="__PUBLIC__/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="__PUBLIC__/static/js/inspinia.js"></script>
+<script src="__PUBLIC__/static/js/plugins/pace/pace.min.js"></script>
+
+{block name="js"}{/block}
+</body>
+
+</html>

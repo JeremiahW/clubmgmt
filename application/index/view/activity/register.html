@@ -1,0 +1,87 @@
+{extend name="layout" /}
+{block name="css"}{/block}
+{block name="body"}
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>报名活动<small> </small></h5>
+    </div>
+    <div class="ibox-content">
+        <form method="post" class="form-horizontal" action='{:url("index/activity/register", array("itemid"=>$itemid, "activityid"=>$activityid))}'>
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                    {notempty name="message"}
+                    <div class="alert alert-warning">
+                        <a class="close" data-dismiss="alert">×</a>
+                        {foreach $message as $vo}
+                        {$vo}<br/>
+                        {/foreach}
+                    </div>
+                    {/notempty}
+                </div>
+            </div>
+            <div class="form-group"><label class="col-sm-2 control-label">自动查询填写</label>
+                <div class="col-sm-10">
+                    <select class="form-control js-data-example-ajax" >
+                        {notempty name="id"}
+                        <option value="{:$mid}" selected="selected">{:$chinese}</option>
+                        {else /}
+                        <option value="" selected="selected">请输入姓名进行自动查询</option>
+                        {/notempty}
+
+                    </select>
+                    <input type="hidden" value='{notempty name="mid"}{$mid}{/notempty}' name="mid" id="mid">
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+            {include file="index/_form" /}
+            <div class="form-group"><label class="col-sm-2 control-label">支付状态</label>
+                <div class="col-sm-10">
+                    <select name="ispaid" class="form-control">
+                        <option value="1" {eq name="ispaid" value="1" }selected {/eq}>已支付</option>
+                        <option value="0" {eq name="ispaid" value="0" }selected {/eq}>未支付</option>
+                    </select>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+            <div class="form-group"><label class="col-sm-2 control-label">审核状态</label>
+                <div class="col-sm-10">
+                    <select name="isapproval" class="form-control">
+                        <option value="1" {eq name="isapproval" value="1" }selected {/eq}>通过</option>
+                        <option value="0" {eq name="isapproval" value="0" }selected {/eq}>未通过</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group"><label class="col-sm-2 control-label">备注</label>
+                <div class="col-sm-10"><input type="text" class="form-control" name="description" value='{notempty name="description"}{$description}{/notempty}'></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <button class="btn btn-white" type="submit">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Save changes</button>
+                    <input type="hidden" class="form-control" name="itemid" value='{notempty name="itemid"}{$itemid}{/notempty}'>
+                    <input type="hidden" class="form-control" name="activityid" value='{notempty name="activityid"}{$activityid}{/notempty}'>
+                    <input type="hidden" name="requestMemberUrl" id="requestMemberUrl" value='{notempty name="requestMemberUrl"}{$requestMemberUrl}{/notempty}' class="form-control">
+                    <input type="hidden" name="requestMemberByIdUrl" id="requestMemberByIdUrl" value='{notempty name="requestMemberByIdUrl"}{$requestMemberByIdUrl}{/notempty}' class="form-control">
+
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}
+{block name="js"}
+{load href="__PUBLIC__/static/js/bootstrap-datetimepicker.min.js" /}
+{load href="__PUBLIC__/static/css/bootstrap-datetimepicker.min.css" /}
+{load href="__PUBLIC__/select2/js/select2.js" /}
+{load href="__PUBLIC__/select2/js/i18n/zh-CN.js" /}
+{load href="__PUBLIC__/select2/css/select2.css" /}
+{load href="__PUBLIC__/select2/css/select2-bootstrap.css" /}
+{load href="__PUBLIC__/view/activity/register.js" /}
+
+{/block}

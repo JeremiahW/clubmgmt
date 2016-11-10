@@ -1,0 +1,56 @@
+{extend name="layout" /}
+{block name="css"}{/block}
+{block name="body"}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>分部名称<small> </small></h5>
+    </div>
+
+    <div class="ibox-content">
+
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>活动名称</th>
+                <th>子活动</th>
+                <th>姓名</th>
+                <th>电话</th>
+                <th>邮箱</th>
+                <th>通过?</th>
+                <th>支付?</th>
+                <th>备注</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {volist name='list' id='m'}
+            <tr>
+
+                    <td>{$m.id}</td>
+                     <td>{$m.activityItem.activity.subject}</td>
+                    <td>{$m.activityItem.subject}</td>
+                    <td>{$m.chinese}</td>
+                    <td>{$m.phone}</td>
+                    <td>{$m.email}</td>
+                    <td>{$m.isapproval}</td>
+                    <td>{$m.ispaid}</td>
+                    <td>{$m.description}</td>
+                    <td></td>
+                </td>
+            </tr>
+            {/volist}
+
+            </tbody>
+        </table>
+        {$list->render()}
+    </div>
+
+</div>
+{/block}
+
+{block name="js"}
+
+{/block}

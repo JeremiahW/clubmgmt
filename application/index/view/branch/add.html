@@ -1,0 +1,76 @@
+{extend name="layout" /}
+{block name="css"}
+
+{/block}
+{block name="body"}
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>分部管理<small> </small></h5>
+    </div>
+    <div class="ibox-content">
+        <form method="post" class="form-horizontal" action='{:url("index/branch/add")}'>
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                    {notempty name="message"}
+                    <div class="alert alert-warning">
+                        <a class="close" data-dismiss="alert">×</a>
+                        {foreach $message as $vo}
+                        {$vo}<br/>
+                        {/foreach}
+                    </div>
+                    {/notempty}
+                </div>
+            </div>
+            <div class="form-group"><label class="col-sm-2 control-label">部门名称</label>
+                <div class="col-sm-10"><input type="text" class="form-control" name="subject" value='{notempty name="subject"}{$subject}{/notempty}'></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+            <div class="form-group"><label class="col-sm-2 control-label">负责人</label>
+                <div class="col-sm-10">
+                    <select class="form-control js-data-example-ajax" >
+                        {notempty name="id"}
+                            <option value="{:$supervisor}" selected="selected">{:$chinese}</option>
+                        {else /}
+                            <option value="" selected="selected">请选择负责人</option>
+                        {/notempty}
+
+                    </select>
+                    <input type="hidden" value='{notempty name="supervisor"}{$supervisor}{/notempty}' name="supervisor" id="supervisor">
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+            <div class="form-group"><label class="col-sm-2 control-label">部门介绍</label>
+                <div class="col-sm-10">
+                    <textarea id="description" name="description" class="form-control">
+                        {notempty name="description"}{$description}{/notempty}
+                    </textarea>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group"><label class="col-sm-2 control-label">显示顺序</label>
+                <div class="col-sm-10"><input type="text" class="form-control" name="seqno" value='{notempty name="seqno"}{$seqno}{/notempty}'></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <button class="btn btn-white" type="submit">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Save changes</button>
+                    <input type="hidden" name="id" id="id" value='{notempty name="id"}{$id}{/notempty}' class="form-control">
+                    <input type="hidden" id="requestUrl" name="requestUrl" value='{notempty name="requestUrl"}{$requestUrl}{/notempty}' class="form-control">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}
+
+{block name="js"}
+{load href="__PUBLIC__/ckeditor/ckeditor.js" /}
+{load href="__PUBLIC__/select2/js/select2.js" /}
+{load href="__PUBLIC__/select2/js/i18n/zh-CN.js" /}
+{load href="__PUBLIC__/select2/css/select2.css" /}
+{load href="__PUBLIC__/select2/css/select2-bootstrap.css" /}
+{load href="__PUBLIC__/view/branch/add.js" /}
+{/block}

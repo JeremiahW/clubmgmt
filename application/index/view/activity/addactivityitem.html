@@ -1,0 +1,111 @@
+{extend name="layout" /}
+{block name="css"}{/block}
+{block name="body"}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>添加活动<small> </small></h5>
+    </div>
+    <div class="ibox-content">
+        <form method="post" class="form-horizontal" action='{:url("index/activity/addActivityItem", array("activityid"=>$activityid))}'>
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                    {notempty name="message"}
+                    <div class="alert alert-warning">
+                        <a class="close" data-dismiss="alert">×</a>
+                        {foreach $message as $vo}
+                        {$vo}<br/>
+                        {/foreach}
+                    </div>
+                    {/notempty}
+                </div>
+            </div>
+            <div class="form-group"><label class="col-sm-2 control-label">活动名称</label>
+                <div class="col-sm-10"><input type="text" class="form-control" name="subject" value='{notempty name="subject"}{$subject}{/notempty}'></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+            <div class="form-group"><label class="col-sm-2 control-label">开始报名日期</label>
+                <div class="col-sm-10">
+                    <div class="input-group date form_date " data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" value='{notempty name="startregdate"}{$startregdate}{/notempty}' name="startregdate" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_input2" value="" />
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+            <div class="form-group"><label class="col-sm-2 control-label">报名结束日期</label>
+                <div class="col-sm-10">
+                    <div class="input-group date form_date " data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" value='{notempty name="endregdate"}{$endregdate}{/notempty}' name="endregdate" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_input3" value="" />
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+            <div class="form-group"><label class="col-sm-2 control-label">允许报名人数</label>
+                <div class="col-sm-10"><input type="text" class="form-control" name="numofmember" value='{notempty name="numofmember"}{$numofmember}{/notempty}'></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+            <div class="form-group"><label class="col-sm-2 control-label">已报名人数</label>
+                <div class="col-sm-10"><input type="text" class="form-control" name="actnumofmember" value='{notempty name="actnumofmember"}{$actnumofmember}{/notempty}'></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+            <div class="form-group"><label class="col-sm-2 control-label">摘要</label>
+                <div class="col-sm-10">
+                    <textarea id="summary" name="summary" class="form-control">
+                        {notempty name="summary"}{$summary}{/notempty}
+                    </textarea>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group"><label class="col-sm-2 control-label">详细介绍</label>
+                <div class="col-sm-10">
+                    <textarea id="description" name="description" class="form-control">
+                        {notempty name="description"}{$description}{/notempty}
+                    </textarea>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+            <div class="form-group"><label class="col-sm-2 control-label">显示顺序</label>
+                <div class="col-sm-10"><input type="text" class="form-control" name="seqno" value='{notempty name="seqno"}{$seqno}{/notempty}'></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group"><label class="col-sm-2 control-label">官方报名价格</label>
+                <div class="col-sm-10"><input type="text" class="form-control" name="price" value='{notempty name="price"}{$price}{/notempty}'></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group"><label class="col-sm-2 control-label">实际报名价格</label>
+                <div class="col-sm-10"><input type="text" class="form-control" name="actprice" value='{notempty name="actprice"}{$actprice}{/notempty}'></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <button class="btn btn-white" type="submit">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Save changes</button>
+                    <input type="hidden" name="id" id="id" value='{notempty name="id"}{$id}{/notempty}' class="form-control">
+                    <input type="hidden" name="activityid" id="activityid" value='{notempty name="activityid"}{$activityid}{/notempty}' class="form-control">
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+{/block}
+
+{block name="js"}
+{load href="__PUBLIC__/static/js/bootstrap-datetimepicker.min.js" /}
+{load href="__PUBLIC__/static/css/bootstrap-datetimepicker.min.css" /}
+{load href="__PUBLIC__/ckeditor/ckeditor.js" /}
+{load href="__PUBLIC__/view/activity/addactivityitem.js" /}
+{/block}

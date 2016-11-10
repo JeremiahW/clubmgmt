@@ -1,0 +1,41 @@
+{extend name="layout" /}
+{block name="css"}
+{load href="__PUBLIC__/static/css/bootstrap-datetimepicker.min.css" /}
+{/block}
+{block name="body"}
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>登记会员<small> </small></h5>
+    </div>
+    <div class="ibox-content">
+        <form method="post" class="form-horizontal" action='{:url("index/index/add")}'>
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                    {notempty name="message"}
+                    <div class="alert alert-warning">
+                        <a class="close" data-dismiss="alert">×</a>
+                        {foreach $message as $vo}
+                        {$vo}<br/>
+                        {/foreach}
+                    </div>
+                    {/notempty}
+                </div>
+            </div>
+
+            {include file="index/_form" /}
+
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <button class="btn btn-white" type="submit">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}
+
+ {block name="js"}
+{load href="__PUBLIC__/static/js/bootstrap-datetimepicker.min.js" /}
+{load href="__PUBLIC__/view/index/add.js" /}
+{/block}
