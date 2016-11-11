@@ -8,12 +8,12 @@
     </div>
 
     <div class="ibox-content">
-
+        <Button id="btnSubmit" class="btn btn-primary">通过审核</Button>
         <table class="table table-responsive">
             <thead>
             <tr>
-                <th>#</th>
-                <th>活动名称</th>
+                <th><input type="checkbox" id="checkAll" name="checkAll" class="form-control"></th>
+                 <th>活动名称</th>
                 <th>子活动</th>
                 <th>姓名</th>
                 <th>电话</th>
@@ -25,11 +25,9 @@
             </tr>
             </thead>
             <tbody>
-
             {volist name='list' id='m'}
             <tr>
-
-                    <td>{$m.id}</td>
+                <td><input type="checkbox" value="{$m.id}" name="selectedMember"  class="form-control selectedMember"></td>
                      <td>{$m.activityItem.activity.subject}</td>
                     <td>{$m.activityItem.subject}</td>
                     <td>{$m.chinese}</td>
@@ -52,5 +50,6 @@
 {/block}
 
 {block name="js"}
+{load href="__PUBLIC__/view/user/show.js" /}
 
 {/block}
