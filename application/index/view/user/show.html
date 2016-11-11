@@ -1,0 +1,45 @@
+{extend name="layout" /}
+{block name="css"}{/block}
+{block name="body"}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>分部列表<small> </small></h5>
+    </div>
+    <div class="ibox-content">
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>中文名称</th>
+                <th>用户名</th>
+                <th>联系电话</th>
+                <th>上次登录日期</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {volist name='list' id='m'}
+            <tr>
+                <td>{$m.id}</td>
+                <td>{$m.chinese}</td>
+                <td>{$m.username}</td>
+                <td>{$m.phone}</td>
+                <td>{$m.update_time}</td>
+                <td>
+                    <a href='{:Url("index/user/add",["id"=>$m.id])}' class="btn btn-primary">修改</a>
+                    <a href='{:Url("index/user/delete",["id"=>$m.id])}' class="btn btn-primary">停用</a>
+                 </td>
+            </tr>
+            {/volist}
+
+            </tbody>
+        </table>
+        {$list->render()}
+    </div>
+
+</div>
+{/block}
+
+{block name="js"}{/block}
