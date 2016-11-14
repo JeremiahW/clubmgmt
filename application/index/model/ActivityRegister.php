@@ -13,6 +13,8 @@ use think\Model;
 
 class ActivityRegister extends Model
 {
+
+
     public function getIsapprovalAttr($value){
         $status = ["1"=>"通过", "0"=>"审核中"];
         return $status[$value];

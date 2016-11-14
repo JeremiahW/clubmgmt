@@ -15,6 +15,7 @@ use think\Controller;
 use think\Db;
 use think\Request;
 use app\index\model\Activity as ActivityModel;
+use think\Url;
 
 class Activity extends Controller
 {
@@ -89,13 +90,21 @@ class Activity extends Controller
     }
 
     public function showMember(){
-
-        //$list = ActivityModel::with("activityItems.activityRegisters")->where("1=1")->paginate(1);
-
-        $list = ActivityRegister::with("activityItem.activity")->where("1=1")->paginate(30);
-
+        $itemid = Request::instance()->param('itemid');
+         //$list = ActivityModel::with("activityItems.activityRegisters")->where("1=1")->paginate(1);
+        $this->assign("requestUrl", Url::build("/index/activity/setstatus"));
+        $list = ActivityRegister::with("activityItem.activity")->where(["itemid"=>$itemid])->paginate(30);
         $this->assign("list", $list);
         return  $this->fetch();
+    }
+
+
+    public function showAllMember(){
+        $activityid  = Request::instance()->param('id');
+        $this->assign("requestUrl", Url::build("/index/activity/setstatus"));
+        $list = ActivityRegister::with("activityItem.activity")->where(["club_activity_register.activityid"=>$activityid])->paginate(30);
+        $this->assign("list", $list);
+        return  $this->fetch("showmember");
     }
 
     public function register(){
@@ -147,6 +156,30 @@ class Activity extends Controller
       //  $list = ActivityModel::with("activityItems")->where("1=1")->paginate(10);
         $this->assign("list", $list);
         return $this->fetch();
+    }
+
+    //json response
+    public function setStatus(){
+        Db::transaction(function (){
+            $col =  Request::instance()->param('col');
+            $value = Request::instance()->param('val');
+            $ids = Request::instance()->param('ids');
+            $col = strtolower($col);
+
+            foreach (json_decode($ids) as $id){
+                $condition = [
+                    ["id","=",$id->id],
+                    ["$col","<>","$value"]
+                ];
+
+                Db::name("ActivityRegister")->update(["id"=>$id->id,"$col"=>"$value"]);
+            }
+        });
+
+
+
+        return json(['result'=>1, 'message'=>'操作完成']);
+
     }
 
     protected function getActivityData($id){

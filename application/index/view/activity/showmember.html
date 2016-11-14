@@ -4,11 +4,29 @@
 
 <div class="ibox float-e-margins">
     <div class="ibox-title">
-        <h5>分部名称<small> </small></h5>
+        <h5>活动报名情况查看<small> </small></h5>
     </div>
 
+
     <div class="ibox-content">
-        <Button id="btnSubmit" class="btn btn-primary">通过审核</Button>
+        <input type="hidden" value='{notempty name="requestUrl"}{$requestUrl}{/notempty}' name="requestUrl" id="requestUrl">
+        <div class="form-group">
+            <Button id="btnSubmit" class="col-sm-2 btn btn-primary">设置审核</Button>
+            <div class="col-sm-4">
+                <select class="form-control" name="isApproval" id="isApproval">
+                    <option value="1" >通过审核</option>
+                    <option value="0" selected>未通过审核</option>
+                </select>
+            </div>
+
+            <Button id="btnPaid" class="col-sm-2 btn btn-primary">设置支付状态</Button>
+            <div class="col-sm-4">
+                <select class="form-control" name="isPaid" id="isPaid">
+                    <option value="1" >已支付</option>
+                    <option value="0" selected>未支付</option>
+                </select>
+            </div>
+        </div>
         <table class="table table-responsive">
             <thead>
             <tr>
