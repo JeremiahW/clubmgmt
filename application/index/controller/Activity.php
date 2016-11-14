@@ -9,6 +9,7 @@
 namespace app\index\controller;
 
 
+use app\common\BaseController;
 use app\index\model\ActivityItem;
 use app\index\model\ActivityRegister;
 use think\Controller;
@@ -17,7 +18,7 @@ use think\Request;
 use app\index\model\Activity as ActivityModel;
 use think\Url;
 
-class Activity extends Controller
+class Activity extends BaseController
 {
     public function add(){
 

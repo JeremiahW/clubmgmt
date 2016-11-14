@@ -9,12 +9,13 @@
 namespace app\index\controller;
 
 
+use app\common\BaseController;
 use think\Controller;
 
 use think\Request;
 use app\index\model\User as UserModel;
 
-class User extends Controller
+class User extends BaseController
 {
     public function add(){
 

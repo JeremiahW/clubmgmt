@@ -12,7 +12,8 @@
 // 应用行为扩展定义文件
 return [
     // 应用初始化
-    'app_init'     => [],
+    'app_init'     => [
+    ],
     // 应用开始
     'app_begin'    => [],
     // 模块初始化
@@ -25,4 +26,8 @@ return [
     'log_write'    => [],
     // 应用结束
     'app_end'      => [],
+
+    'CheckAuth' => [
+        'app\index\behavior\UserCheck',
+    ],
 ];

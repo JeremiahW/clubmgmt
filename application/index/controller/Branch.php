@@ -8,6 +8,7 @@
 
 namespace app\index\controller;
 
+use app\common\BaseController;
 use app\index\model\Branch as BranchModel;
 use app\index\model\Member;
 use think\Controller;
@@ -16,7 +17,7 @@ use think\db\Query;
 use think\Request;
 use think\Url;
 
-class Branch extends Controller
+class Branch extends BaseController
 {
     public function add()
     {

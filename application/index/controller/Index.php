@@ -1,16 +1,20 @@
 <?php
 namespace app\index\controller;
 
+use app\common\BaseController;
 use app\index\model\Member;
 use think\Controller;
 use think\Db;
 use think\Request;
 
-class Index extends Controller
+class Index extends BaseController
 {
     public function index()
     {
+
     }
+
+
 
     public function show()
     {
