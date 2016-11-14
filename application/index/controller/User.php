@@ -46,6 +46,10 @@ class User extends BaseController
          return $this->fetch();
     }
 
+    public function delete(){
+        $this->redirect("user/show");
+    }
+
     protected function getUserData($id){
         $m = UserModel::get($id);
         $this->assign("username", $m['username']);
@@ -53,6 +57,7 @@ class User extends BaseController
         $this->assign("phone",  $m['phone']);
         $this->assign("password", $m['password']);
         $this->assign("repassword", $m['password']);
+        $this->assign("email", $m['email']);
         $this->assign("id",  $m['id']);
     }
 
@@ -62,6 +67,7 @@ class User extends BaseController
         $this->assign("phone", Request::instance()->param('phone'));
         $this->assign("password", Request::instance()->param('password'));
         $this->assign("repassword", Request::instance()->param('repassword'));
+        $this->assign("email", Request::instance()->param('email'));
         $this->assign("id",  Request::instance()->param('id'));
     }
 }
