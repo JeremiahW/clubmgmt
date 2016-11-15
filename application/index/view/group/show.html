@@ -1,0 +1,44 @@
+{extend name="layout" /}
+{block name="css"}{/block}
+{block name="search"}{/block}
+
+{block name="body"}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>分组列表<small> </small></h5>
+    </div>
+    <div class="ibox-content">
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>分组名称</th>
+                <th>显示顺序</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {volist name='list' id='m'}
+            <tr>
+                <td>{$m.id}</td>
+                <td>{$m.subject}</td>
+                <td>{$m.seqno}</td>
+                <td>
+                    <a href='{:Url("index/group/add",["id"=>$m.id])}' class="btn btn-primary">修改</a>
+                    <a href='{:Url("index/group/member",["branchid"=>$m.id])}' class="btn btn-primary">查看用户</a>
+                </td>
+            </tr>
+            {/volist}
+
+            </tbody>
+        </table>
+        {$list->render()}
+    </div>
+
+</div>
+{/block}
+
+{block name="js"}
+{/block}

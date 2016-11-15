@@ -1,0 +1,46 @@
+{extend name="layout" /}
+{block name="css"}{/block}
+{block name="search"}{/block}
+
+{block name="body"}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>分组列表<small> </small></h5>
+    </div>
+    <div class="ibox-content">
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>模块</th>
+                <th>控制器</th>
+                <th>Action</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {volist name='list' id='m'}
+            <tr>
+                <td>{$m.id}</td>
+                <td>{$m.module}</td>
+                <td>{$m.controller}</td>
+                <td>{$m.action}</td>
+                <td>
+                    <a href='{:Url("index/module/add",["id"=>$m.id])}' class="btn btn-primary">修改</a>
+                    <a href='{:Url("index/module/delete",["id"=>$m.id])}' class="btn btn-primary">删除</a>
+                </td>
+            </tr>
+            {/volist}
+
+            </tbody>
+        </table>
+        {$list->render()}
+    </div>
+
+</div>
+{/block}
+
+{block name="js"}
+{/block}
