@@ -1,0 +1,55 @@
+{extend name="layout" /}
+{block name="css"}{/block}
+{block name="search"}{/block}
+
+{block name="body"}
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>分组模块<small> </small></h5>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">分组列表</h3>
+                    </div>
+                    <div class="panel-body">
+                        <select class="form-control"  name="group" id="group">
+                            <option value=''>请选择分组</option>
+                            {volist name="groups" id="group"}
+                                 <option value='{$group.id}'>{$group.subject}</option>
+                            {/volist}
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">模块列表</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table id="table" data-toggle="table" data-click-to-select="true"  >
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" id="btnSubmit">Save changes</button>
+        <input type="hidden" id="requestUrl" name="requestUrl" value='{notempty name="requestUrl"}{$requestUrl}{/notempty}' class="form-control">
+        <input type="hidden" id="saveUrl" name="saveUrl" value='{notempty name="saveUrl"}{$saveUrl}{/notempty}' class="form-control">
+        <input type="hidden" id="selectedModuleUrl" name="saveUrl" value='{notempty name="selectedModuleUrl"}{$selectedModuleUrl}{/notempty}' class="form-control">
+
+    </div>
+</div>
+{/block}
+
+{block name="js"}
+{load href="__PUBLIC__/bootstrap-table/bootstrap-table.min.css" /}
+{load href="__PUBLIC__/bootstrap-table/bootstrap-table.min.js" /}
+{load href="__PUBLIC__/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" /}
+{load href="__PUBLIC__/view/group/module.js" /}
+{/block}

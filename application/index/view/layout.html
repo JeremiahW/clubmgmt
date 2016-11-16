@@ -63,23 +63,41 @@
 
                     </ul>
                 </li>
-                <li {if condition='(strtolower($Request.controller) eq "user") or (strtolower($Request.controller) eq "group")'}class="active"{/if}>
-                    <a href="#"><i class="fa  fa-cog"></i> <span class="nav-label">用户管理</span> <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li {if condition='(strtolower($Request.controller) eq "user") and (strtolower($Request.action) eq "show")'}class='active'{/if} ><a href='{:Url("index/user/show")}'>查看用户</a></li>
-                        <li {if condition='(strtolower($Request.controller) eq "user") and (strtolower($Request.action) eq "add")'}class='active'{/if}><a href='{:Url("index/user/add")}'>添加用户</a></li>
-                        <li {if condition='(strtolower($Request.controller) eq "group") and (strtolower($Request.action) eq "show")'}class='active'{/if} ><a href='{:Url("index/group/add")}'>添加分组</a></li>
-                        <li {if condition='(strtolower($Request.controller) eq "group") and (strtolower($Request.action) eq "add")'}class='active'{/if}><a href='{:Url("index/group/show")}'>查看分组</a></li>
+                <li {if condition='(strtolower($Request.controller) eq "user") or (strtolower($Request.controller) eq "group") or (strtolower($Request.controller) eq "module")'}class="active"{/if}>
+                    <a href="#"><i class="fa  fa-cog"></i> <span class="nav-label">系统管理</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level ">
+                        <li {if condition='(strtolower($Request.controller) eq "user")'}class="active"{/if}>
+                            <a href="#">用户管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li {if condition='(strtolower($Request.controller) eq "user") and (strtolower($Request.action) eq "show")'}class='active'{/if} ><a href='{:Url("index/user/show")}'>查看用户</a></li>
+                                <li {if condition='(strtolower($Request.controller) eq "user") and (strtolower($Request.action) eq "add")'}class='active'{/if}><a href='{:Url("index/user/add")}'>添加用户</a></li>
+                            </ul>
+                        </li>
+                    </ul>
 
+                    <ul class="nav nav-second-level collapse">
+                        <li  {if condition='(strtolower($Request.controller) eq "module")'}class="active"{/if}>
+                            <a href="#">模块管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li {if condition='(strtolower($Request.controller) eq "module") and (strtolower($Request.action) eq "show")'}class='active'{/if} ><a href='{:Url("index/module/show")}'>全部模块</a></li>
+                                <li {if condition='(strtolower($Request.controller) eq "module") and (strtolower($Request.action) eq "add")'}class='active'{/if}><a href='{:Url("index/module/add")}'>添加模块</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="nav nav-second-level collapse">
+                        <li  {if condition='(strtolower($Request.controller) eq "group")'}class="active"{/if}>
+                        <a href="#">分组权限<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li {if condition='(strtolower($Request.controller) eq "group") and (strtolower($Request.action) eq "show")'}class='active'{/if} ><a href='{:Url("index/group/add")}'>添加分组</a></li>
+                            <li {if condition='(strtolower($Request.controller) eq "group") and (strtolower($Request.action) eq "add")'}class='active'{/if}><a href='{:Url("index/group/show")}'>查看分组</a></li>
+                            <li {if condition='(strtolower($Request.controller) eq "group") and (strtolower($Request.action) eq "module")'}class='active'{/if}><a href='{:Url("index/group/module")}'>分组模块</a></li>
+                            <li {if condition='(strtolower($Request.controller) eq "group") and (strtolower($Request.action) eq "user")'}class='active'{/if}><a href='{:Url("index/group/user")}'>分组用户</a></li>
+                        </ul>
+                        </li>
                     </ul>
                 </li>
-                <li {if condition='(strtolower($Request.controller) eq "module" )'}class="active"{/if}>
-                <a href="#"><i class="fa  fa-cog"></i> <span class="nav-label">模块管理</span> <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li {if condition='(strtolower($Request.controller) eq "module") and (strtolower($Request.action) eq "show")'}class='active'{/if} ><a href='{:Url("index/module/show")}'>全部模块</a></li>
-                    <li {if condition='(strtolower($Request.controller) eq "module") and (strtolower($Request.action) eq "add")'}class='active'{/if}><a href='{:Url("index/module/add")}'>添加模块</a></li>
-                </ul>
-                </li>
+
 
             </ul>
 

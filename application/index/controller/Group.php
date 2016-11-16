@@ -9,9 +9,14 @@
 namespace app\index\controller;
 
 
+use app\index\model\GroupModule;
+use app\index\model\Module;
 use think\Controller;
+use think\Db;
 use think\Request;
 use \app\index\model\Group as GroupModel;
+use think\Url;
+
 class Group extends Controller
 {
     public function add(){
@@ -42,6 +47,60 @@ class Group extends Controller
         $this->assign('list', $list);
 
         return $this->fetch();
+    }
+
+    /*
+     * 分组模块管理
+     * */
+    public function module(){
+
+
+        $groups = GroupModel::where("1=1")->select();
+        $modules = Module::where("1=1")->select();
+
+        $this->assign("groups", $groups);
+        $this->assign("modules", $modules);
+        $this->assign("requestUrl", Url::build("index/group/showModule"));
+        $this->assign("saveUrl", Url::build("index/group/addModule"));
+        $this->assign("selectedModuleUrl",  Url::build("index/group/getModulesByGroupId"));
+        return $this->fetch();
+    }
+
+    /*
+   *
+     * 分组用户管理
+   * */
+    public function user(){
+        return $this->fetch();
+    }
+
+    public function showModule(){
+        $groupid = Request::instance()->param('groupid');
+        $modules = Module::where("isdeleted<>1")->field("id,module,controller,action")->select();
+        return json($modules);
+    }
+
+    public function addModule(){
+
+        Db::transaction(function (){
+             $groupid = Request::instance()->param('groupid');
+
+             $modules = input('post.modules/a');
+            GroupModule::where(["gid"=>$groupid])->delete();
+            foreach ($modules as $m){
+                $mid = $m["id"];
+                $data = ["gid"=>$groupid, "mid"=>$mid];
+                $db = new GroupModule($data);
+                $db->save();
+            }
+        });
+        return json(["result"=>1]);
+    }
+
+    public function getModulesByGroupId(){
+        $groupid = Request::instance()->param('groupid');
+        $modules = GroupModule::where(["gid"=>$groupid])->field("mid")->select();
+        return json($modules);
     }
 
     protected function getUserData($id){
