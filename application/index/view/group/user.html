@@ -3,8 +3,63 @@
 {block name="search"}{/block}
 
 {block name="body"}
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>用户分组<small> </small></h5>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">用户列表</h3>
+                    </div>
+                    <div class="panel-body">
+                        <select class="form-control js-data-example-ajax" >
+                            {notempty name="id"}
+                            <option value="{:$mid}" selected="selected">{:$chinese}</option>
+                            {else /}
+                            <option value="" selected="selected">请输入姓名进行自动查询</option>
+                            {/notempty}
 
+                        </select>
+                        <input type="hidden" value='{notempty name="uid"}{$uid}{/notempty}' name="uid" id="uid">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">分组列表</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table id="table" data-toggle="table" data-click-to-select="true"  >
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" id="btnSubmit">Save changes</button>
+
+        <input type="hidden" id="getMemberUrl" name="getMemberUrl" value='{notempty name="getMemberUrl"}{$getMemberUrl}{/notempty}' class="form-control">
+        <input type="hidden" id="getGroupUrl" name="getGroupUrl" value='{notempty name="getGroupUrl"}{$getGroupUrl}{/notempty}' class="form-control">
+        <input type="hidden" id="addUserUrl" name="addUserUrl" value='{notempty name="addUserUrl"}{$addUserUrl}{/notempty}' class="form-control">
+     </div>
+
+</div>
 {/block}
 
 {block name="js"}
+{load href="__PUBLIC__/select2/js/select2.js" /}
+{load href="__PUBLIC__/select2/js/i18n/zh-CN.js" /}
+{load href="__PUBLIC__/select2/css/select2.css" /}
+{load href="__PUBLIC__/select2/css/select2-bootstrap.css" /}
+
+{load href="__PUBLIC__/bootstrap-table/bootstrap-table.min.css" /}
+{load href="__PUBLIC__/bootstrap-table/bootstrap-table.min.js" /}
+{load href="__PUBLIC__/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" /}
+
+{load href="__PUBLIC__/view/group/user.js" /}
 {/block}

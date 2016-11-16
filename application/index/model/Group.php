@@ -13,5 +13,7 @@ use think\Model;
 
 class Group extends Model
 {
-
+    public function Members(){
+        return $this->belongsToMany("Member","club_group_user","uid", "gid");
+    }
 }

@@ -4,17 +4,17 @@
 
 {block name="body"}
 
-<div class="ibox float-e-margins">
+ <div class="ibox float-e-margins">
     <div class="ibox-title">
-        <h5>分组列表<small> </small></h5>
+        <h5>组内用户<small> </small></h5>
     </div>
     <div class="ibox-content">
         <table class="table table-responsive">
             <thead>
             <tr>
                 <th>#</th>
-                <th>分组名称</th>
-                <th>显示顺序</th>
+                <th>姓名</th>
+                <th>电话</th>
                 <th>&nbsp;</th>
             </tr>
             </thead>
@@ -23,21 +23,22 @@
             {volist name='list' id='m'}
             <tr>
                 <td>{$m.id}</td>
-                <td>{$m.subject}</td>
-                <td>{$m.seqno}</td>
+                <td>{$m.chinese}</td>
+                <td>{$m.phone}</td>
                 <td>
-                    <a href='{:Url("index/group/add",["id"=>$m.id])}' class="btn btn-primary">修改</a>
-                    <a href='{:Url("index/group/showmember",["gid"=>$m.id])}' class="btn btn-primary">查看用户</a>
+                    <a href='{:Url("index/group/deleteUser",["uid"=>$m.id, "gid"=>$gid])}' class="btn btn-primary">移除</a>
+
                 </td>
             </tr>
             {/volist}
 
             </tbody>
         </table>
-        {$list->render()}
+
     </div>
 
 </div>
+
 {/block}
 
 {block name="js"}

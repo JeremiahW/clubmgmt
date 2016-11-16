@@ -9,4 +9,7 @@ namespace app\index\model;
 class Member extends \think\Model
 {
 
+    public function groups(){
+        return $this->belongsToMany("Group","club_group_user", "gid", "uid");
+    }
 }
