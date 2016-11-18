@@ -9,6 +9,7 @@
 namespace app\index\controller;
 
 
+use app\common\BaseController;
 use app\index\model\GroupModule;
 use app\index\model\GroupUser;
 use app\index\model\Member;
@@ -19,7 +20,7 @@ use think\Request;
 use \app\index\model\Group as GroupModel;
 use think\Url;
 
-class Group extends Controller
+class Group extends BaseController
 {
     public function add(){
 
@@ -102,7 +103,7 @@ class Group extends Controller
     //JSON Response
     public function showModule(){
         $groupid = Request::instance()->param('groupid');
-        $modules = Module::where("isdeleted<>1")->field("id,module,controller,action")->select();
+        $modules = Module::where("isdeleted<>1")->field("id,module,controller,action,subject")->select();
         return json($modules);
     }
 

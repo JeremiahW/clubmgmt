@@ -1,1 +1,1 @@
-一个基于ThinkPHP5的练习项目
+一个练习项目, ThinkPHP5的后端. ReactJS Flux的前端, ES6语法.

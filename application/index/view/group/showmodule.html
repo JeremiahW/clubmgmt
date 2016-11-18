@@ -13,9 +13,12 @@
             <thead>
             <tr>
                 <th>#</th>
+                <th>显示名称</th>
                 <th>模块</th>
                 <th>控制器</th>
                 <th>Action</th>
+                <th>序号</th>
+                <th>图标</th>
                 <th>&nbsp;</th>
             </tr>
             </thead>
@@ -24,9 +27,12 @@
             {volist name='list' id='m'}
             <tr>
                 <td>{$m.id}</td>
+                <th>{$m.subject}</th>
                 <td>{$m.module}</td>
                 <td>{$m.controller}</td>
                 <td>{$m.action}</td>
+                <td>{$m.seqno}</td>
+                <td>{$m.icon}</td>
                 <td>
                     <a href='{:Url("index/group/deleteModule",["mid"=>$m.id, "gid"=>$gid])}' class="btn btn-primary">移除</a>
 

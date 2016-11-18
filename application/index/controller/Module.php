@@ -56,6 +56,9 @@ class Module extends Controller
         $this->assign("module", $m['module']);
         $this->assign("controller", $m['controller']);
         $this->assign("action",  $m['action']);
+        $this->assign("subject", $m['subject']);
+        $this->assign("seqno", $m['seqno']);
+        $this->assign("icon",  $m['icon']);
         $this->assign("id",  $m['id']);
     }
 
@@ -63,6 +66,9 @@ class Module extends Controller
         $this->assign("module", Request::instance()->param('module'));
         $this->assign("controller", Request::instance()->param('controller'));
         $this->assign("action",  Request::instance()->param('action'));
+        $this->assign("subject", Request::instance()->param('subject'));
+        $this->assign("seqno", Request::instance()->param('seqno'));
+        $this->assign("icon",  Request::instance()->param('icon'));
         $this->assign("id",  Request::instance()->param('id'));
     }
 }

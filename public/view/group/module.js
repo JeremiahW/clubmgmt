@@ -14,6 +14,9 @@ $('#table').bootstrapTable({
         field:'id',
         title:"#"
     }, {
+        field:'subject',
+        title:"显示名称"
+    }, {
         field:'module',
         title:"模块"
     },{
