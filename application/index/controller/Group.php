@@ -90,6 +90,15 @@ class Group extends Controller
         return $this->fetch();
     }
 
+    public function showGroupModule(){
+        $gid = Request::instance()->param('gid');
+        $rows = GroupModel::get(["id"=>$gid], "modules");
+        $this->assign("list", $rows->Modules);
+        $this->assign("gid", $gid);
+
+        return $this->fetch("showmodule");
+    }
+
     //JSON Response
     public function showModule(){
         $groupid = Request::instance()->param('groupid');
@@ -102,6 +111,15 @@ class Group extends Controller
         $uid = Request::instance()->param('uid');
 
         GroupUser::where(["gid"=>$gid, "uid"=>$uid])->delete();
+        $this->success("移除成功");
+
+    }
+
+    public function deleteModule(){
+        $gid = Request::instance()->param('gid');
+        $mid = Request::instance()->param('mid');
+
+        GroupModule::where(["gid"=>$gid, "mid"=>$mid])->delete();
         $this->success("移除成功");
 
     }
