@@ -8,24 +8,23 @@ class RegistrationSearch extends React.Component {
     constructor(props){
      super(props);
        this.state={
-           id:"111",
+           id:"",
        }
    }
    handleChange(name, event){
        var newState = {};
        newState[name] = event.target.value;
        this.setState(newState);
-
+       // AppDispatcher.RegistrationSearchAction(this.state.id);
    }
    onSubmit(e){
        e.preventDefault();
-       console.log("onSubmit id:" + this.state.id);
-       AppDispatcher.RegistrationSearchAction(this.state.id);
-       // RegistrationActions.se(this.state.id)
-      // registrationSearch
+       if(this.state.id != ""){
+           AppDispatcher.RegistrationSearchAction(this.state.id);
+       }
+
    }
     render(){
-        console.log("Render id:" + this.state.id);
         return (<div className="row">
             <form onSubmit={this.onSubmit.bind(this)}  >
                 <div className="form-group">

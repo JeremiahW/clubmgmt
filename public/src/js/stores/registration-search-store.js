@@ -1,9 +1,10 @@
 import AppDispatcher from "../actions/registration-search-action-creator";
 import {RegistrationConstants} from "../constants/registration-search-constants";
+import * as RequestUrlConstants from "../constants/request-url-constants";
 import {EventEmitter} from "events";
 
 
-var _result;
+var _result = [];
 
 class RegistrationSearchStoreClass extends EventEmitter{
     addChangeListener(callback) {
@@ -16,7 +17,6 @@ class RegistrationSearchStoreClass extends EventEmitter{
 
     getResult () {
     //这里返回数据的结果
-        console.log("getResult() result:" + _result);
         return _result;
     }
 }
@@ -26,9 +26,19 @@ const RegistrationSearchStore = new RegistrationSearchStoreClass();
 AppDispatcher.register((action)=>{
     switch (action.actionType){
         case RegistrationConstants.REGISTRATION_SEARCH:
-            console.log("action is fired, result:" + action.id);
-            _result = action.id; //这里使用Ajax将结果给全局变量.
-            RegistrationSearchStore.emit("search");
+             $.ajax({
+                url:RequestUrlConstants.REQUEST_SEARCH_REGISTRATION,
+                type:"POST",
+                dataType:"json",
+                data:{'id':action.id},
+                success:function (result) {
+                    console.log("shenfenzheng:"+result.shenfenzheng);
+                    if(result.result == true){
+                        _result = result.data;
+                        RegistrationSearchStore.emit("search");
+                    }
+                }
+            });
             break;
     }
 })
