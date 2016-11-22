@@ -53,6 +53,7 @@ export default class Registration extends React.Component{
             success:function (result) {
                 if(result.result == true){
                     //TODO 提示注册成功
+
                 }
                 else{
                     let newState={
