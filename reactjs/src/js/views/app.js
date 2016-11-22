@@ -8,12 +8,14 @@ export default class App extends React.Component {
     }
 
     render() {
-        return <div className="row">
+        return <div className="ibox-content">
             <ul>
                 <li><Link to="/reg">注册活动</Link></li>
                 <li><Link to="/search">查询注册结果</Link></li>
             </ul>
-            {this.props.children}
+            <div className="ibox-content">
+                {this.props.children}
+            </div>
         </div>
     }
 }
