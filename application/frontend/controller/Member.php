@@ -30,7 +30,7 @@ class Member extends Controller
 
         $result = $this->validate($data,'index/Member',null,true);
         if (true !== $result) {
-            return json(["data"=>"请填写必填的字段.", "result"=>false]);
+            return json(["data"=>$result, "result"=>false]);
         }
         else{
 

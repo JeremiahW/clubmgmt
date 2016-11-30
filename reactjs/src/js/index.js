@@ -6,6 +6,8 @@ import RegistrationSearch from "./views/registration-search";
 import Registration from "./views/registration";
 import {Router, Route, Link, browserHistory} from 'react-router'
 import App from "./views/app";
+import * as URL from "./constants/request-url-constants";
+import ApplyRegistration from "./views/apply-activity";
 
 //var React = require("react");
 //var ReactDom = require("react-dom");
@@ -15,9 +17,10 @@ import App from "./views/app";
 
 ReactDom.render((
     <Router history={browserHistory}>
-        <Route path="/clubmgmt/reactjs/build/html/" component={App} >
-            <Route path="/reg" component={Registration}/>
-            <Route path="/search" component={RegistrationSearch} />
+        <Route path={URL.FRONTEND_DEFAULT} component={App} >
+            <Route path={URL.FRONTENT_REGISTRATION} component={Registration}/>
+            <Route path={URL.FRONTENT_SEARCH} component={RegistrationSearch} />
+            <Route path={URL.FRONTEND_APPLY} component={ApplyRegistration} />
          </Route>
     </Router>
 

@@ -35,7 +35,7 @@ export default class Registration extends React.Component{
             dataType:"json",
         }).done((result)=>{
             if(result.result==true){
-                console.log(result.data);
+              //  console.log(result.data);
                 let newState = {
                     data:"",
                     branches:result.data,
@@ -67,8 +67,6 @@ export default class Registration extends React.Component{
                         "isOpen":true,
                     }
                     this.setState(newState);
-                    console.log("Show Modal?" + this.state.isOpen);
-
                 }
             }.bind(this)
         })
@@ -99,7 +97,11 @@ export default class Registration extends React.Component{
                     <Modal.Title id="contained-modal-title-lg">提示信息</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {this.state.message}
+                    {
+                        Object.keys(this.state.message).map(function (key) {
+                            return <div key={key}>{this.state.message[key]}</div>;
+                        }.bind(this))
+                    }
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={this.hideModal}>Close</Button>
