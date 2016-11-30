@@ -1,7 +1,8 @@
 import React from "react";
 import AppDispatcher from "../actions/registration-action-creator";
 import * as RequestUrlConstants from "../constants/request-url-constants";
-import Message from "../widget/Message";
+
+import {Modal, Button} from "react-bootstrap";
 
 export default class Registration extends React.Component{
     constructor(props){
@@ -21,9 +22,11 @@ export default class Registration extends React.Component{
             emergencycontactphone:"",
             branchid:"",
             gender:"",
+            isOpen:false,
         }
         this.getBranch = this.getBranch.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.hideModal = this.hideModal.bind(this);
     }
     getBranch(){
         $.ajax({
@@ -52,14 +55,20 @@ export default class Registration extends React.Component{
             data:{"form":this.state},
             success:function (result) {
                 if(result.result == true){
-                    //TODO 提示注册成功
-
+                   let newState={
+                       "isOpen":true,
+                       "message":"注册成功了.",
+                   }
+                    this.setState(newState);
                 }
                 else{
                     let newState={
                         "message": result.data,
+                        "isOpen":true,
                     }
                     this.setState(newState);
+                    console.log("Show Modal?" + this.state.isOpen);
+
                 }
             }.bind(this)
         })
@@ -77,10 +86,25 @@ export default class Registration extends React.Component{
     componentWillUnmount(){
 
     }
-
+    hideModal(){
+        let newState = {
+            "isOpen": false,
+        }
+        this.setState(newState);
+    }
     render(){
         return <form method="post" className="form-horizontal" onSubmit={this.onSubmit}>
-                    <Message message={this.state.message} />
+            <Modal show={this.state.isOpen} onHide={this.hideModal} dialogClassName="custom-modal">
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-lg">提示信息</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {this.state.message}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={this.hideModal}>Close</Button>
+                </Modal.Footer>
+            </Modal>
                     <div className="form-group">
                         <label className="col-sm-2 control-label">选择分部</label>
                         <div className="col-sm-10">

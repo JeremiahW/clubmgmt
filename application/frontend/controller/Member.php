@@ -3,7 +3,7 @@ namespace app\frontend\controller;
 
 
 use app\index\model\ActivityRegister;
-use app\index\validate\Member as MemberModel;
+use app\index\model\Member as MemberModel;
 use think\Controller;
 use think\Request;
 
@@ -32,7 +32,11 @@ class Member extends Controller
         if (true !== $result) {
             return json(["data"=>"请填写必填的字段.", "result"=>false]);
         }
+        else{
 
+            $db = new MemberModel();
+            $db->allowField(true)->save($data);
+         }
         return json(["data"=>$data, "result"=>true]);
     }
 }
