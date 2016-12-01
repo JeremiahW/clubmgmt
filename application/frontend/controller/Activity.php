@@ -33,11 +33,19 @@ class Activity extends Controller
             return json(["message"=>$result, "result"=>false]);
         }
         else{
-            //TODO 判断身份证是否重复报名
-            $db = new ActivityRegister();
-            $db->allowField(true)->save($data);
+            $itemid = $data["itemid"];
+            $shenfenzheng = $data["shenfenzheng"];
+            $num = ActivityRegister::where(["itemid"=>$itemid, "shenfenzheng"=>trim($shenfenzheng)])->count();
+            if( $num == 0){
+                $db = new ActivityRegister();
+                $db->allowField(true)->save($data);
+                return json(["message"=>["msg"=>"提交成功"], "result"=>true]);
+            }
+            else{
+                return json(["message"=>["msg"=>"您已经报名活动了."], "result"=>false]);
+            }
          }
 
-        return json(["message"=>["msg"=>"提交成功"], "result"=>true]);
+
     }
 }
