@@ -43,7 +43,7 @@ export default class Registration extends React.Component{
                 this.setState(newState);
             }
         }).fail((result)=>{
-            console.log("request fail")
+            //console.log("request fail")
         });
     }
     onSubmit(e){
