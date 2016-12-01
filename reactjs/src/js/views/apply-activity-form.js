@@ -1,6 +1,7 @@
 import React from "react"
+import ReactDOM from "react-dom"
 import ApplyActivityStore from "../stores/apply-activity-store"
-import {Modal, Popover, OverlayTrigger, Overlay, Button} from "react-bootstrap"
+import {Modal, Popover, Tooltip, Overlay, Button} from "react-bootstrap"
 import * as URL from "../constants/request-url-constants"
 
 export default class ApplyActivityForm extends React.Component{
@@ -11,10 +12,11 @@ export default class ApplyActivityForm extends React.Component{
         this.close = this.close.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.getMessage = this.getMessage.bind(this);
-        this.state = {
+         this.state = {
             itemid:"",
             activityid:"",
             showModal:false,
+            showMessage: false,
             chinese:"",
             gender:"",
             phone:"",
@@ -32,11 +34,12 @@ export default class ApplyActivityForm extends React.Component{
     }
 
     onClickCallback(){
-        //TODO 显示表单, 弹出Modal
         let newState = {
             itemid: ApplyActivityStore.getActivityItemId(),
             activityid: ApplyActivityStore.getActivityId(),
             showModal: true,
+            showMessage:false,
+            message:"",
         }
         this.setState(newState);
     }
@@ -48,16 +51,12 @@ export default class ApplyActivityForm extends React.Component{
     }
     getMessage(){
         return (
-            <Popover id="popover-positioned-top" title="请填以下信息">
-                {
                     Object.keys(this.state.message).map(function (key) {
                         return <div key={key}>{this.state.message[key]}</div>;
                     }.bind(this))
-                }
-            </Popover>
         );
     }
-    onSubmit(){
+    onSubmit(e){
          e.preventDefault();
         console.log("ActivityId:" + this.state.activityid + "ItemId: " + this.state.itemid)
         $.ajax({
@@ -66,12 +65,11 @@ export default class ApplyActivityForm extends React.Component{
             dataType:"json",
             data:{"form":this.state},
             success:function (response) {
-
                 let newState={
                     "message":response.message,
+                    showMessage : true
                 }
                 this.setState(newState);
-
                 console.log(response.message);
             }.bind(this)
         })
@@ -166,12 +164,15 @@ export default class ApplyActivityForm extends React.Component{
                         <div className="hr-line-dashed"></div>
                         <div className="form-group">
                             <div className="col-sm-4 col-sm-offset-2">
-                                 <a href="#" className="btn" onClick={this.close}>关闭</a>
+                                 <a href="#" className="btn btn-default" onClick={this.close}>关闭</a> &nbsp;&nbsp;
 
-                                 <button className="btn btn-primary" type="submit">提交</button>
-                                <OverlayTrigger trigger="click" placement="top"  overlay = {this.getMessage()} >
-                                    <Button onClick={this.onSubmit}>Holy guacamole!</Button>
-                                </OverlayTrigger>
+                                 <button className="btn btn-primary" type="submit" ref="target" >提交</button>
+                                <Overlay  show={this.state.showMessage} rootClose={true}
+                                          container={this} target={()=>ReactDOM.findDOMNode(this.refs.target)}
+                                          onHide={() => this.setState({ showMessage: false })}
+                                          placement="top">
+                                    <Popover id="overload-top" title="提示信息">    {this.getMessage()}</Popover>
+                                </Overlay>
                              </div>
                         </div>
                     </form>
