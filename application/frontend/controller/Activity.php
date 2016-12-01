@@ -10,12 +10,34 @@ namespace app\frontend\controller;
 
 
 use app\index\model\ActivityItem;
+use app\index\model\ActivityRegister;
 use think\Controller;
+use think\Request;
 
 class Activity extends Controller
 {
     public function get(){
         $list = ActivityItem::with("activity")->select();
-        return ["data"=>$list, "result" => true];
+        return json(["data"=>$list, "result" => true]);
+    }
+
+    public function apply(){
+
+        $data = Request::instance()->post("form/a");
+        $data["ispaid"] = 0;
+        $data["isapproval"] = 0;
+
+        $result = $this->validate($data, "index/ActivityRegister", null, true);
+
+        if(true !== $result){
+            return json(["message"=>$result, "result"=>false]);
+        }
+        else{
+            //TODO 判断身份证是否重复报名
+            $db = new ActivityRegister();
+            $db->allowField(true)->save($data);
+         }
+
+        return json(["message"=>["msg"=>"提交成功"], "result"=>true]);
     }
 }

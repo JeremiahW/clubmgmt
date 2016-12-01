@@ -3,12 +3,15 @@
  */
 import React from "react";
 import * as URL from "../constants/request-url-constants";
-import {Panel, Table} from "react-bootstrap";
+import {Panel, Table, Button} from "react-bootstrap";
+import ApplyActivityForm from "./apply-activity-form";
+import AppDispatcher from "../actions/apply-activity-action-creator";
+
 
 export default class ApplyRegistration extends React.Component{
     constructor(props){
         super(props)
-        this.onSubmit = this.onSubmit.bind(this);
+       //  this.onSubmit = this.onSubmit.bind(this);
         this.getActivities = this.getActivities.bind(this);
         this.state = {
             "activities": []
@@ -37,12 +40,15 @@ export default class ApplyRegistration extends React.Component{
         })
      }
 
-    onSubmit(){
-
+    onSubmit(itemid, activityid){
+        if(itemid != "" &&  activityid != ""){
+            AppDispatcher.ApplyActivityAction(itemid, activityid);
+        }
     }
     render(){
-        return <div>{
-            this.state.activities.map(function (item) {
+        return <div>
+            <ApplyActivityForm />
+            {this.state.activities.map(function (item) {
                 return <Panel header={item.activity.subject + " " + item.subject} key={item.id}>
                     <Table striped bordered condensed hover>
                         <tbody>
@@ -61,9 +67,9 @@ export default class ApplyRegistration extends React.Component{
                         </tbody>
                     </Table>
                     <div dangerouslySetInnerHTML={{__html:item.summary}}></div>
-
+                    <Button onClick={this.onSubmit.bind(this, item.id, item.activity.id)} >我要报名</Button>
                 </Panel>
-            })
+            }.bind(this))
         }</div>
     }
 }
