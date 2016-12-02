@@ -37,6 +37,20 @@
                         IN+
                     </div>
                 </li>
+                <li {if condition='(strtolower($Request.controller) eq "news") or  (strtolower($Request.controller) eq "catalog") '}class="active"{/if}>
+
+                <a href="#"><i class="fa fa-user"></i> <span class="nav-label">新闻管理</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li {if condition='(strtolower($Request.controller) eq "catalog") and (strtolower($Request.action) eq "add")'}class='active'{/if}><a href='{:Url("index/catalog/add")}'>添加分类</a></li>
+                    <li {if condition='(strtolower($Request.controller) eq "catalog") and (strtolower($Request.action) eq "show")'}class='active'{/if}><a href='{:Url("index/catalog/show")}'>查看分类</a></li>
+
+                    <li {if condition='(strtolower($Request.controller) eq "news") and (strtolower($Request.action) eq "show")'}class='active'{/if}><a href='{:Url("index/news/show")}'>查看新闻
+                </a>
+                    </li>
+                    <li {if condition='(strtolower($Request.controller) eq "news") and (strtolower($Request.action) eq "add")'}class='active'{/if}><a href='{:Url("index/news/add")}'>添加新闻</a></li>
+                </ul>
+                </li>
+
                 <li {if condition='(strtolower($Request.controller) eq "index")'}class="active"{/if}>
 
                     <a href="#"><i class="fa fa-user"></i> <span class="nav-label">会员管理</span> <span class="fa arrow"></span></a>

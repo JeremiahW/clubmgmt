@@ -1,0 +1,62 @@
+{extend name="layout" /}
+{block name="css"}{/block}
+{block name="search"}{/block}
+
+{block name="body"}
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>后台用户管理<small> </small></h5>
+    </div>
+    <div class="ibox-content">
+        <input type="button" class="btn btn-default" value="添加" data-toggle="modal" data-target="#myModal"/>
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>分类名称</th>
+                    <th>上一级分类</th>
+                    <th></th>
+                </tr>
+            </thead>
+            {volist name='list' id='m'}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            {/volist}
+        </table>
+        {$list->render()}
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form id="frmCatalog" method="post" class="form-horizontal" action='{:url("index/catalog/add")}'>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        {include file="catalog/_form" /}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="btnSubmit">Save changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div data-toggle="popupover">
+
+    </div>
+
+</div>
+{/block}
+
+{block name="js"}
+{load href="__PUBLIC__/view/catalog/add.js" /}
+{/block}
