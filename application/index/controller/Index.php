@@ -76,7 +76,7 @@ class Index extends BaseController
         $this->assign("shenfenzheng", $m['shenfenzheng']);
         $this->assign("address", $m['address']);
         $this->assign("clothsize", $m['clothsize']);
-        $this->assign("emergencycontactname", $m['bloodtype']);
+        $this->assign("bloodtype", $m['bloodtype']);
         $this->assign("emergencycontactname", $m['emergencycontactname']);
         $this->assign("emergencycontactphone", $m['emergencycontactphone']);
         $this->assign("id", $m['id']);
