@@ -15,10 +15,6 @@ use think\Request;
 
 class Catalog extends BaseController
 {
-    public function add(){
-        return $this->fetch();
-    }
-
     public function show(){
 
         $this->assign("pid", -1);
@@ -29,6 +25,7 @@ class Catalog extends BaseController
         return $this->fetch();
     }
 
+    //json response
     public function save(){
         if(Request::instance()->isPost()) {
             $data = input('post.');
@@ -47,6 +44,7 @@ class Catalog extends BaseController
         return json(["message"=>"hello", "result"=>false]);
     }
 
+    //json response
     public function get(){
         if(Request::instance()->isPost()) {
             $id = Request::instance()->post("id");
@@ -56,6 +54,7 @@ class Catalog extends BaseController
         return json(["message"=>"错误的请求", "result"=>false]);
 
     }
+
 
     public function remove(){
         $id = Request::instance()->param("id");
