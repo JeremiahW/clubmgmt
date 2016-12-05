@@ -13,5 +13,15 @@ use think\Model;
 
 class Catalog extends Model
 {
+    public function getCreate_TimeAttr($value){
+        return  date_format(new \DateTime($value), 'Y-m-d ');
+    }
 
+    public function getUpdate_TimeAttr($value){
+        return  date_format(new \DateTime($value), 'Y-m-d ');
+    }
+
+    public function parent(){
+        return $this->belongsTo("catalog", "pid", "id", "pcatalog");
+    }
 }

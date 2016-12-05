@@ -3,6 +3,7 @@
 {block name="search"}{/block}
 
 {block name="body"}
+
 <div class="ibox float-e-margins">
     <div class="ibox-title">
         <h5>后台用户管理<small> </small></h5>
@@ -15,14 +16,23 @@
                     <th>#</th>
                     <th>分类名称</th>
                     <th>上一级分类</th>
+                    <th>创建时间</th>
+                    <th>更新时间</th>
                     <th></th>
                 </tr>
             </thead>
             {volist name='list' id='m'}
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{$m.id}</td>
+                <td>{$m.subject}</td>
+                <td>{$m.parent.subject}</td>
+                <td>{$m.create_time}</td>
+                <td>{$m.update_time}</td>
+                <td>
+                    <a href="#" class="btn btn-primary btnEdit" value="编辑" data-toggle="modal" data-target="#myModal" id={$m.id}>编辑</a>
+
+                    <a href='{:Url("index/catalog/remove",["id"=>$m.id])}' class="btn btn-danger" >删除</a>
+                </td>
             </tr>
             {/volist}
         </table>
@@ -43,16 +53,18 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="btnSubmit">Save changes</button>
+
+                        <button type="button" class="btn btn-primary" id="btnSubmit" data-toggle="popover" data-placement="top" data-content="正在处理...">
+                           保存
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
-    <div data-toggle="popupover">
 
-    </div>
+
 
 </div>
 {/block}
