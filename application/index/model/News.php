@@ -16,48 +16,54 @@ class News extends Module
     }
 
     public function getIstopAttr($value){
-        $status = ["1"=>"是", "0"=>"否"];
-        return $status[$value];
+        if($value == "on")
+            return "是";
+        else
+            return "否";
     }
 
     public function getIshotAttr($value){
-        $status = ["1"=>"是", "0"=>"否"];
-        return $status[$value];
+        if($value == "on")
+            return "是";
+        else
+            return "否";
     }
 
     public function getIsrecommendAttr($value){
-        $status = ["1"=>"是", "0"=>"否"];
-        return $status[$value];
+        if($value == "on")
+            return "是";
+        else
+            return "否";
     }
 
-
-    public function setIstopAttr($value)
+    public function setistopAttr($value)
     {
         if($value == "on"){
-            return "1";
+            return $value;
         }
         else{
-            return "0";
+            return "";
         }
     }
 
     public function setIshotAttr($value)
     {
         if($value == "on"){
-            return "1";
+            return $value;
         }
         else{
-            return "0";
+            return "";
         }
     }
 
     public function setIsrecommendAttr($value)
     {
         if($value == "on"){
-            return "1";
+            return $value;
         }
         else{
-            return "0";
+            return "";
         }
     }
+
 }

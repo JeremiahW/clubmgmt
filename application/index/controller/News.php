@@ -32,12 +32,16 @@ class News extends BaseController
             $data = input("post.");
 
             $thumbnail = $this->upload();
+            //用户上传文件, 获取文件路径.
             if(!empty($thumbnail)) {
                 $data["thumbnail"] = $thumbnail;
                 $this->assign("thumbnail", $thumbnail);
             }
-            else{
-                //如果用户没上传, 则意味着保留原来的图片. 将原来的图片根据id显示出来.
+            else if(!empty($id)){
+                //没上传文件, 显示原图片.
+                $thumbnail = NewsModel::get($id)["thumbnail"];
+                $data["thumbnail"] = $thumbnail;
+                $this->assign("thumbnail", $thumbnail);
             }
 
             $result = $this->validate($data, "News", null, true);
@@ -47,8 +51,23 @@ class News extends BaseController
             else{
                 //添加
                 $db = new NewsModel();
-                empty($id) ? $db->allowField(true)->save($data): $db->allowField(true)->save($data, ["id"=>$id]);
-
+                $db->catid = $data["catid"];
+                $db->subject =  $data["subject"];
+                $db->news =  $data["news"];
+                $db->author =  $data["author"];
+                $db->seqno =  $data["seqno"];
+                $db->istop =  array_key_exists("istop", $data) ? $data["istop"] : "";
+                $db->ishot = array_key_exists("ishot", $data) ? $data["ishot"] : "";
+                $db->isrecommend = array_key_exists("isrecommend", $data) ? $data["isrecommend"] : "";
+                $db->thumbnail = $thumbnail;
+                if(!empty($id))
+                {
+                    $db->id = $id;
+                    $db->isUpdate(true)->save();
+                }
+                else{
+                    $db->save();
+                }
             }
         }
         else{
@@ -105,6 +124,7 @@ class News extends BaseController
         $this->assign("news", Request::instance()->param('news'));
         $this->assign("author", Request::instance()->param('author'));
         $this->assign("seqno", Request::instance()->param('seqno'));
+
         $this->assign("ishot", Request::instance()->param('ishot'));
         $this->assign("istop", Request::instance()->param('istop'));
         $this->assign("isrecommend", Request::instance()->param('isrecommend'));
